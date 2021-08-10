@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Form = () => {
-	const [city, setCity] = useState("");
+	const [city, setCity] = useState<string>("");
 
 	return (
 		<form>
