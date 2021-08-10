@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Title from "./components/Title";
 import Form from "./components/Form";
 import Results from "./components/Results";
+import Loading from "./components/Loading";
 import "./App.css";
 
 type ResultsStateType = {
@@ -13,6 +14,10 @@ type ResultsStateType = {
 };
 
 function App() {
+	// ▼Loading.tsx
+	const [loading, setLoading] = useState<boolean>(false);
+	// ▲Loading.tsx
+
 	// ▼Form.tsxより追記
 	const [city, setCity] = useState<string>("");
 	const [results, setResults] = useState<ResultsStateType>({
@@ -25,6 +30,7 @@ function App() {
 
 	const getWeather = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setLoading(true);
 		fetch(
 			`https://api.weatherapi.com/v1/current.json?key=4a5058a46c0b439689911920211008&q=${city}&aqi=no`
 		)
@@ -38,6 +44,7 @@ function App() {
 					icon: data.current.condition.icon,
 				});
 				setCity("");
+				setLoading(false);
 			})
 			.catch((err) =>
 				alert(
@@ -52,7 +59,7 @@ function App() {
 			<div className="container">
 				<Title />
 				<Form setCity={setCity} getWeather={getWeather} city={city} />
-				<Results results={results} />
+				{loading ? <Loading /> : <Results results={results} />}
 			</div>
 		</div>
 	);
