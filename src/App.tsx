@@ -37,7 +37,13 @@ function App() {
 					conditionText: data.current.condition.text,
 					icon: data.current.condition.icon,
 				});
-			});
+				setCity("");
+			})
+			.catch((err) =>
+				alert(
+					"エラーが発生しました。ページをリロードしてもう一度トライしてください。"
+				)
+			);
 	};
 	// ▲Form.tsxより追記
 
@@ -45,7 +51,7 @@ function App() {
 		<div className="wrapper">
 			<div className="container">
 				<Title />
-				<Form setCity={setCity} getWeather={getWeather} />
+				<Form setCity={setCity} getWeather={getWeather} city={city} />
 				<Results results={results} />
 			</div>
 		</div>
