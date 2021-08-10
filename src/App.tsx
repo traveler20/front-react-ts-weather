@@ -58,7 +58,7 @@ function App() {
 		<div className="wrapper">
 			<div className="container">
 				<Title />
-				<Form setCity={setCity} getWeather={getWeather} city={city} />
+				<Form getWeather={getWeather} setCity={setCity} city={city} />
 				{loading ? <Loading /> : <Results results={results} />}
 			</div>
 		</div>

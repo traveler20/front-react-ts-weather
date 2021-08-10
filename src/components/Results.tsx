@@ -13,16 +13,15 @@ const Results = ({ results }: ResultsPropsType) => {
 
 	return (
 		<>
-			{cityName && <div>{cityName}</div>}
-			{country && <div>{country}</div>}
+			{cityName && <div className="results-city">{cityName}</div>}
+			{country && <div className="results-country">{country}</div>}
 			{temperature && (
-				<div>
-					{temperature}
-					<span>℃</span>
+				<div className="results-temp">
+					{temperature} <span>°C</span>
 				</div>
 			)}
 			{conditionText && (
-				<div>
+				<div className="results-condition">
 					<img src={icon} alt="icon" />
 					<span>{conditionText}</span>
 				</div>
